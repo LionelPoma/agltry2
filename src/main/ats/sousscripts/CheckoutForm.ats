@@ -1,0 +1,41 @@
+[ats-header]
+
+author -> pc_pierre\huber
+created -> 2018-09-16 at 12:38:47
+description -> test script ....
+
+[ats-variables]
+
+
+[ats-actions]
+
+channel-start -> checkout -> $param(0,chrome)
+goto-url -> http://examples.sencha.com/extjs/6.5.1/examples/kitchensink/?modern#form-checkout
+click [try = 25] -> BUTTON [@index = 1, data-componentid =~ ext-button-.*] -> DIV [text =~ (?i)Contact.*] -> IFRAME [id = examples-iframe]
+property -> name => propertyVar -> INPUT [class = x-input-el, name = firstName] -> IFRAME [id = examples-iframe]
+keyboard -> Pierre -> INPUT [class = x-input-el, name = firstName] -> iframe [id = examples-iframe]
+keyboard -> Huber -> INPUT [name = lastName] -> iframe [id = examples-iframe]
+keyboard -> pierrehuber -> INPUT [name = email] -> iframe [id = examples-iframe]
+click -> DIV [class = x-icon-el x-font-icon] -> DIV [id =~ ext-emailfield.*, text =~ (?i)Email] -> iframe [id = examples-iframe]
+keyboard -> pierrehuber@yahoo.fr -> INPUT [name = email] -> iframe [id = examples-iframe]
+keyboard -> 55589774512 -> INPUT [name = phone] -> iframe [id = examples-iframe]
+click -> BUTTON [type = button] -> DIV [data-componentid =~ ext-button-8, text =~ (?i)NEXT] -> iframe [id = examples-iframe]
+keyboard -> 25 sesam street -> INPUT [name = shipping_address] -> iframe [id = examples-iframe]
+keyboard -> New York city -> INPUT [name = shipping_city] -> iframe [id = examples-iframe]
+keyboard -> New York -> INPUT [name = shipping_state] -> iframe [id = examples-iframe]
+keyboard -> 10001 -> INPUT [name = shipping_postalcode] -> iframe [id = examples-iframe]
+click -> BUTTON [type = button] -> DIV [data-componentid =~ ext-button-8] -> iframe [id = examples-iframe]
+click -> BUTTON [type = button] -> DIV [data-componentid =~ ext-button-8, text =~ (?i)NEXT] -> iframe [id = examples-iframe]
+click -> BUTTON [type = button] -> DIV [data-componentid =~ ext-button.*, text =~ (?i)AMEX] -> iframe [id = examples-iframe]
+keyboard -> pierre huber -> INPUT [name = payment_name] -> iframe [id = examples-iframe]
+keyboard -> 01234567896325412 -> INPUT [name = payment_number] -> iframe [id = examples-iframe]
+keyboard -> june -> INPUT [name = payment_month] -> iframe [id = examples-iframe]
+keyboard -> 2020 -> INPUT [name = payment_year] -> iframe [id = examples-iframe]
+click -> BUTTON [type = button] -> DIV [class =~ x-component x-button x-has-text x-icon-align-left x-arrow-align-right x-layout-box-item x-layout-hbox-item, text =~ (?i)SUBMIT] -> iframe [id = examples-iframe]
+comment -> log -> First way to check message box :
+check-count -> 1 -> DIV [class = x-innerhtml, text = Your payment has been processed!] -> iframe [id = examples-iframe]
+comment -> script -> An other way to check message box :
+check-property -> text =~ (?i).*Your payment has been processed!.* -> DIV [id = ext-messagebox] -> iframe [id = examples-iframe]
+click -> BUTTON [type = button] -> DIV [class =~ (?i)x-component\s*x-button\s*x-has-text\s*.*, text =~ (?i)OK] -> IFRAME [id = examples-iframe]
+channel-close -> checkout
+comment -> script -> 

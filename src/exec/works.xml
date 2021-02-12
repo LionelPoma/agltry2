@@ -1,0 +1,56 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="works" verbose="10">
+  <parameter name="visual.report" value="2"/>
+  <parameter name="ats.suite.description" value=""/>
+  <parameter name="ats.log.level" value="all"/>
+  <test name="testMain" preserve-order="true">
+    <parameter name="var_env3" value="msedge"/>
+    <parameter name="var_env1" value="chrome"/>
+    <parameter name="android_ip_port" value="192.168.0.50:8082"/>
+    <parameter name="browsername" value="chrome"/>
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="android.ISS_live"/>
+      <class name="android.la_centrale"/>
+      <class name="android.meteo_android"/>
+      <class name="android.myCanal_passKO"/>
+      <class name="android.Pinterest"/>
+      <class name="android.RadioFrance"/>
+      <class name="android.SpeedTest"/>
+      <class name="api.API_REST"/>
+      <class name="api.API_SOAP"/>
+      <class name="appels_conditionnes.parent"/>
+      <class name="desktop.large_input_notpad"/>
+      <class name="desktop.NotepadKeysChain"/>
+      <class name="desktop.NotepadPlusPlus"/>
+      <class name="desktop.paint"/>
+      <class name="desktop.procexp"/>
+      <class name="desktop.SpaceMonger"/>
+      <class name="desktop.winrar"/>
+      <class name="multi_channel.API_REST_web"/>
+      <class name="multi_channel.API_SOAP_web"/>
+      <class name="multi_channel.dragdrop_SYST_web"/>
+      <class name="password.OctoPerf_login"/>
+      <class name="password.passwords"/>
+      <class name="scripting.scripting"/>
+      <class name="scripting.scripting_to_csv"/>
+      <class name="sousscripts.CheckoutForm"/>
+      <class name="sousscripts.DemoClic_iframe"/>
+      <class name="sousscripts.DemoDragDrop"/>
+      <class name="sousscripts.DemoFrais"/>
+      <class name="sousscripts.DemoHover"/>
+      <class name="sousscripts.DemoInputs"/>
+      <class name="sousscripts.DemoSaisie"/>
+      <class name="sousscripts.DemoSwipe"/>
+      <class name="sousscripts.DemoTooltipCheck"/>
+      <class name="sousscripts.DemoVerification"/>
+      <class name="special_features.check_null_versus_zero"/>
+      <class name="special_features.random_input"/>
+      <class name="web.subscripts.Web_chrome"/>
+      <class name="web.subscripts.Web_firefox"/>
+      <class name="web.subscripts.Web_ie"/>
+      <class name="web.subscripts.Web_msedge"/>
+      <class name="web.subscripts.Web_opera"/>
+    </classes>
+  </test>
+</suite>

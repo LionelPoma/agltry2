@@ -1,0 +1,20 @@
+[ats-header]
+
+author -> 
+created -> 2020-06-26 at 14:40:37
+
+[ats-variables]
+
+var -> ip_port -> $env(android_ip_port)
+
+[ats-actions]
+
+channel-start -> message -> mobile://$env(android_ip_port)/com.android.messaging
+comment -> summary -> app-name = $sys(app-name)<br>app-version = $sys(app-version)<br>manchine-name = $sys(machine-name)<br>user-name = $sys(user-name)<br>os-name = $sys(os-name)
+click -> ImageView [viewId = start_new_conversation_button]
+keyboard -> 0611017372 -> MultiAutoCompleteTextView [viewId = recipient_text_view]
+click -> HorizontalScrollView [viewId = tab_strip]
+keyboard -> Message envoyé automatiquement par Agilitest via GenyMotion -> EditText [viewId = compose_message_text]
+click -> ImageButton [viewId = send_message_button]
+click -> ImageButton [description = Navigate up]
+channel-close -> message

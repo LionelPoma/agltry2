@@ -1,0 +1,14 @@
+[ats-header]
+
+author -> pc_pierre\huber
+created -> 2017-12-15 at 19:32:28
+
+[ats-variables]
+
+
+[ats-actions]
+
+channel-start -> dragdrop -> $env(browser,chrome)
+comment -> script -> ouverture d'un canal sous '$param(0)'
+subscript -> sousscripts.dragdrop.DragDrop1
+channel-close -> dragdrop

@@ -1,0 +1,26 @@
+[ats-header]
+
+author -> AGILITEST-DUPER\Emmanuel DUPERRAY
+created -> 2020-10-04 at 21:46:51
+
+[ats-variables]
+
+
+[ats-actions]
+
+channel-start -> newChannel -> mobile://192.168.235.230:8104/com.android.deskclock
+button -> volumeUp
+button -> volumeDown
+click -> ImageButton [description = Cities]
+click -> ImageView [viewId = search_button]
+keyboard -> paris -> EditText [viewId = search_src_text]
+button -> delete
+check-property -> innerText = pari -> EditText [viewId = search_src_text]
+button -> back
+check-count -> 1+ -> TextView [viewId = digital_clock]
+button -> home
+check-count -> 0 -> TextView [viewId = title]
+check-count -> 1 -> ScrollView [viewId = workspace]
+button -> search
+check-count -> 1 -> EditText [viewId = search_src_text]
+channel-close -> newChannel

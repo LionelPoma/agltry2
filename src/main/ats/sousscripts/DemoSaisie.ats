@@ -1,0 +1,19 @@
+[ats-header]
+
+author -> AGILITEST-DUPER\Emmanuel DUPERRAY
+created -> 2018-09-03 at 13:44:42
+groups -> default , web
+
+[ats-variables]
+
+
+[ats-actions]
+
+channel-start -> Saisie -> $env(browser,chrome)
+goto-url -> http://examples.sencha.com/extjs/6.5.1/examples/kitchensink/?modern#binding-selection
+click [try = 20] -> DIV [id = ext-element-120] -> iframe [id = examples-iframe]
+keyboard -> Prénom_1 -> INPUT [@index = 1, id =~ ext-element-.*] -> IFRAME [id = examples-iframe]
+//keyboard -> Prénom_1 -> INPUT [id = ext-element-70] -> IFRAME [id = examples-iframe]
+keyboard -> Nom_1 -> INPUT [@index = 2, id =~ ext-element-.*] -> IFRAME [id = examples-iframe]
+//keyboard -> Nom_1 -> INPUT [id = ext-element-83] -> IFRAME [id = examples-iframe]
+channel-close -> Saisie

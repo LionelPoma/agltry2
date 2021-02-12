@@ -1,0 +1,53 @@
+[ats-header]
+
+author -> AGILITEST-DUPER\Emmanuel DUPERRAY
+created -> 2019-02-25 at 13:33:08
+
+[ats-variables]
+
+var -> result -> regexp [(.*), 1]
+var -> ip_port -> $env(android_ip_port)
+
+[ats-actions]
+
+channel-start -> newChannel -> mobile://$env(android_ip_port)/fr.carboatmedia.lacentrale
+//check-count -> 1 -> @IMAGE [error = 0.5%, source = android/la_centrale/202081211037.png]
+//click -> @IMAGE [error = 0.5%, source = android/la_centrale/202081211037.png]
+click [nofail] -> Button [innerText = J'accepte]
+click [nofail] -> TextView [viewId = dont_display]
+//click -> LinearLayoutCompat [viewId = rate_satisfied]
+//click -> LinearLayoutCompat [viewId = rate_dissatisfied]
+click -> TextView [text = Marque]
+keyboard -> Audi -> EditText [viewId = search_src_text]
+click -> TextView [innerText =~ AUDI.*]
+click -> TextView [viewId = filter_answer_menu_ok]
+click -> TextView [text = Modèle, viewId = criteria_title]
+click -> TextView [innerText =~ A4 \(.*]
+click -> TextView [viewId = filter_answer_menu_ok]
+click -> TextView [innerText = Génération]
+keyboard -> 5E -> EditText [viewId = search_src_text]
+click -> TextView [innerText =~ A4 \(5E GENERATION\) AVANT.*]
+click -> TextView [viewId = filter_answer_menu_ok]
+click -> LinearLayout [innerText = Carburant, viewId = criteria_container]
+click -> TextView [innerText =~ Diesel.*]
+click -> TextView [viewId = filter_answer_menu_ok]
+//click -> ImageButton [description = Revenir en haut de la page]
+click -> TextView [innerText = Prix, viewId = criteria_title]
+keyboard -> 20000 -> EditText [viewId = min]
+keyboard -> 25000 -> EditText [viewId = max]
+click -> TextView [viewId = filter_answer_menu_ok]
+click -> TextView [innerText = Kilométrage, viewId = criteria_title]
+keyboard -> 40000 -> EditText [viewId = min]
+keyboard -> 150000 -> EditText [viewId = max]
+click -> TextView [viewId = filter_answer_menu_ok]
+//click -> TextView [viewId = more_items]
+click [center = 1, top = 0] -> TextView [viewId = search_button_text]
+property -> text => result -> TextView [text =~ .*résultats]
+click -> TextView [viewId = menu_announce_listing_sort]
+click -> CheckedTextView [innerText = Prix Croissant, viewId = text1]
+click -> Button [viewId = button1]
+click -> TextView [viewId = menu_announce_listing_filter]
+keyboard -> 190 S LINE -> EditText [viewId = search_src_text]
+click -> TextView [innerText =~ (?i)V\s*AVANT\s*2.0\s*TDI\s*190\s*S\s*LINE\s*S\s*TRONIC]
+property -> text => result_190_SLINE_STRONIC -> TextView [text =~ .*résultats]
+channel-close -> newChannel

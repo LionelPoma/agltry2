@@ -1,0 +1,28 @@
+[ats-header]
+
+author -> AGILITEST-DUPER\Emmanuel DUPERRAY
+created -> 2020-04-09 at 13:21:41
+groups -> default
+
+[ats-variables]
+
+var -> today_transform -> date [dd/MM/yyyy, 1y, 1m, 1d] -> $today
+var -> browser_csv -> browsers_x1
+
+[ats-actions]
+
+comment -> summary -> app-name = $sys(app-name)<br>app-version = $sys(app-version)<br>manchine-name = $sys(manchine-name)<br>user-name = $sys(user-name)<br>os-name = $sys(os-name)
+subscript -> web.calc_web
+subscript -> web.specialKey
+subscript -> web.fenetres
+subscript -> web.selection
+subscript -> sousscripts.CheckoutForm
+subscript -> sousscripts.DemoClic_iframe
+subscript -> sousscripts.DemoDragDrop
+subscript -> sousscripts.DemoFrais
+subscript -> sousscripts.DemoHover
+subscript -> sousscripts.DemoInputs
+subscript -> sousscripts.DemoSaisie
+subscript -> sousscripts.DemoSwipe
+subscript -> sousscripts.DemoTooltipCheck
+subscript -> sousscripts.DemoVerification

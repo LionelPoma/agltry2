@@ -1,0 +1,69 @@
+[ats-header]
+
+author -> AGILITEST-DUPER\Emmanuel DUPERRAY
+created -> 2018-09-19 at 16:24:36
+
+[ats-variables]
+
+var -> total -> regexp [(.*): (.*), 2]
+var -> valuelog -> regexp [(.*)\$(.*).00, 2]
+var -> SantaTravelValue -> 15,000
+
+[ats-actions]
+
+channel-start -> web -> $env(browser,chrome)
+comment -> script -> Démarrage du canal sur le navigateur passé en paramètre ($param(0,chrome)), avec le navigateur chrome par défaut.
+goto-url -> https://home-expenses.cxjs.io/dashboard
+comment -> script -> Nous cliquons successivement sur les différents rectangles
+click -> INPUT [placeholder = Period]
+click -> TH [data-point = Y-2020]
+click [try = 30] -> rect [class = cxe-legend-shape cxs-color-15]
+click -> rect [class = cxe-legend-shape cxs-color-14]
+click -> rect [class = cxe-legend-shape cxs-color-12]
+click -> rect [class = cxe-legend-shape cxs-color-11]
+click -> rect [class = cxe-legend-shape cxs-color-10]
+click -> rect [class = cxe-legend-shape cxs-color-9]
+click -> rect [class = cxe-legend-shape cxs-color-7]
+click -> rect [class = cxe-legend-shape cxs-color-6]
+click -> rect [class = cxe-legend-shape cxs-color-5]
+click -> rect [class = cxe-legend-shape cxs-color-4]
+click -> rect [class = cxe-legend-shape cxs-color-2]
+click -> rect [class = cxe-legend-shape cxs-color-1]
+comment -> script -> Clic sur le bouton 'clear selection' pour supprimer la dernière sélection
+click -> BUTTON [class = cxb-button cxm-hollow, type = button]
+comment -> script -> Navigation sur la liste des postes de dépense
+click -> A [class = cxb-link, href = /entry/new]
+comment -> script -> Ajout d'une nouvelle dépense de voyage
+click -> DIV [class = category, text = Travel]
+comment -> script -> Saisie de la date de la dépense
+click -> INPUT [class = cxe-datetimefield-input]
+keyboard -> Dec 25, 2019$key(ENTER) -> INPUT [class = cxe-datetimefield-input]
+comment -> script -> Saisie du montant de la dépense
+keyboard -> $var(SantaTravelValue) -> INPUT [class = cxe-numberfield-input]
+//check-property [nofail] -> text =~ (?i)Invalid\s*date\s*entered. -> LABEL [class = cxb-validationerror]
+comment -> script -> et de la description du déplacement
+keyboard -> Santa travel$key(ENTER) -> INPUT [class = cxe-textfield-input]
+comment -> script -> Puis nous sauvons cette dépense en cliquant sur SAVE
+click -> BUTTON [class = cxb-button cxm-primary, type = button]
+comment -> script -> Nous naviguons ensuite vers le tableau de bord des dépenses
+click -> A [class = cxb-link, href = /dashboard]
+comment -> script -> Nous faisons un survol permettant de faire apparaitre le montant de la dernière dépense
+over -> rect [class = cxe-column-rect, y =~ \d*]
+comment -> script -> Nous récupérons le montant total cumulé des dépenses
+property -> text => total -> DIV [class = cxe-flexbox-flexbox cxs-align-center cxs-target-any cxs-row, text =~ (?i)Timeline.*TOTAL.*]
+comment -> script -> et sélectionnons ensuite le menu log permettant d'afficher l'historique des dépenses
+click -> A [text = Log]
+//comment -> script -> Nous filtrons par montant, du plus faible au plus élevé
+//click -> TH [class = cxe-grid-col-header cxs-aligned-right cxs-sortable, text =~ (?i).*Amount.*] -> TBODY [class = cxe-grid-header] -> DIV [class = cxe-grid-fixed-header]
+//comment -> script -> Puis du plus élevé au plus faible.
+//click -> TH [class = cxe-grid-col-header cxs-aligned-right cxs-sortable cxs-sorted-asc, text = Amountarrow_upward] -> TBODY [class = cxe-grid-header] -> DIV [class = cxe-grid-fixed-header]
+//comment -> script -> Nous récupérons la valeur de la première entrée
+//property -> text => valuelog -> TD [class = cxs-pad cxs-aligned-right, id = true]
+//comment -> script -> Et vérifions qu'il s'agit bien de la valeur que nous avons entrée.
+//check-value -> $var(valuelog) = $var(SantaTravelValue)
+//comment -> script -> Puis nous supprimons cette entrée
+//click -> BUTTON [class = cxb-button cxm-hollow, id = true, text =~ (?i)REMOVE, type = button]
+//comment -> script -> (validation de la popup de suppression)
+//click -> BUTTON [class = cxb-button cxm-flat-primary, text =~ (?i)YES, type = button]
+comment -> script -> Arrêt du canal
+channel-close -> web

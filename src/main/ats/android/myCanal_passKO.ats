@@ -1,0 +1,31 @@
+[ats-header]
+
+author -> LAPTOP-LT8QHS42\Agilitest
+created -> 2020-04-10 at 14:01:26
+
+[ats-variables]
+
+var -> ip_port -> $env(android_ip_port)
+var -> login -> caipture2test@gmail.com
+var -> motDePasse -> $pass(pass1)
+
+[ats-actions]
+
+comment -> script -> <i>Prérequis: avoir installé l'appliction myCanal sur le mobile</i>
+channel-start -> myCanal -> mobile://$var(ip_port)/com.canal.android.canal
+click [left = 642, top = 38] -> TextView [innerText =~ (?i).*connecter, viewId = showcase_text_label]
+check-count [try = 20] -> 0 -> TextView [viewId = message]
+keyboard [try = 10] -> $var(login)$key(TAB) -> EditText [viewId = sso-email]
+click -> EditText [viewId = sso-pass]
+keyboard -> $key(CONTROL-A)$key(DELETE) -> EditText [viewId = sso-pass]
+keyboard -> $var(motDePasse) -> EditText [viewId = sso-pass]
+click -> Button [viewId = sso-form_submitButton]
+check-count -> 1 -> TextView [viewId = alertTitle]
+property -> text => propertyVar -> TextView [viewId = message]
+click -> Button [innerText = OK]
+click -> View [viewId = closeWebView]
+swipe -> top = 500 -> FrameLayout [@index = 1, checkable = false]
+swipe -> top = 500 -> FrameLayout [@index = 1, checkable = false]
+click -> TextView [innerText = SPORT]
+click -> TextView [innerText = SÉRIES]
+channel-close -> myCanal

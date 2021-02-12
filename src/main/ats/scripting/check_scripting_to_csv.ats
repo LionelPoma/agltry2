@@ -1,0 +1,11 @@
+[ats-header]
+
+author -> 
+created -> 2020-06-16 at 17:11:55
+
+[ats-variables]
+
+
+[ats-actions]
+
+subscript -> scripting.sous_script2 -> assets:///data/FichierCSV_java_edit.csv

@@ -1,0 +1,20 @@
+[ats-header]
+
+author -> AGILITEST-DUPER\Emmanuel DUPERRAY
+created -> 2020-11-04 at 15:13:33
+
+[ats-variables]
+
+var -> iteration_sous_script -> $iteration
+
+[ats-actions]
+
+comment -> script -> $param(colonne1)<br>$iteration<br>doit etre égale à <br>$param(num_iter)
+subscript [iteration_sous_script = 1] -> special_features.sousscripts.SousScript_iteration_$iteration -> assets:///data/iterations.json
+subscript [iteration_sous_script = 2] -> special_features.sousscripts.SousScript_iteration_$iteration -> assets:///data/iterations.json
+check-value -> $iteration = $param(num_iter&co;0)
+comment -> log -> iteration .......................... $var(iteration_sous_script)
+
+[ats-returns]
+
+return -> $iteration

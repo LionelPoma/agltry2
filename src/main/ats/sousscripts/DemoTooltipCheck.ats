@@ -1,0 +1,37 @@
+[ats-header]
+
+author -> pc_pierre\huber
+created -> 2018-11-12 at 14:38:58
+groups -> web
+
+[ats-variables]
+
+var -> firstValue -> regexp [.*of.*(\$\d+).*to.*, 1] -> $var(tooltip)
+var -> secondValue -> regexp [.*to.*(\$\d+).*of.*, 1] -> $var(tooltip)
+
+[ats-actions]
+
+channel-start -> grids -> $env(browser,chrome)
+goto-url -> http://examples.sencha.com/extjs/6.5.1/examples/kitchensink/?modern#d3-view-heatmap-purchases
+check-count [try = 20] -> 0 -> DIV [class = loading-circle-12 loading-circle] -> IFRAME [id = examples-iframe]
+comment -> script -> Sélection des ventes par jour
+//click [try = 15] -> BUTTON [type = button] -> DIV [id =~ ext-button.*, text =~ (?i)PURCHASES BY DAY]
+comment -> script -> Survol de la case 286...
+over [try = 15] -> text [text = 286] -> IFRAME [id = examples-iframe]
+comment -> script -> On récupère la propriété qui vient de s'afficher dans le tooltip
+property -> text => tooltip -> DIV [id = ext-element-120] -> IFRAME [id = examples-iframe]
+comment -> script -> Récupération des valeurs dans des variables
+check-value -> $var(firstValue) = $1400
+comment -> script -> firstValue et secondValue sont extraites de la même variable tooltip récupérée du DIV
+check-value -> $var(secondValue) = $1500
+comment -> script -> Elles sont calculées en utilisant des expressions régulières
+over -> text [text = 305] -> IFRAME [id = examples-iframe]
+property -> text => tooltip -> DIV [id = ext-element-120] -> IFRAME [id = examples-iframe]
+check-value -> $var(firstValue) = $1300
+check-value -> $var(secondValue) = $1400
+over -> text [text = 187] -> IFRAME [id = examples-iframe]
+property -> text => tooltip -> DIV [id = ext-element-120] -> IFRAME [id = examples-iframe]
+check-value -> $var(firstValue) = $1800
+check-value -> $var(secondValue) = $1900
+comment -> script -> Après que plusieurs contrôles aient été effectués, fermeture du canal
+channel-close -> grids
