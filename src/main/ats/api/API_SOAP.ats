@@ -15,7 +15,7 @@ var -> Country_ISO_Code3 -> yolo
 channel-start -> soapAdd -> http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL
 comment -> summary -> app-name = $sys(app-name)<br>app-version = $sys(app-version)<br>manchine-name = $sys(machine-name)<br>user-name = $sys(user-name)<br>os-name = $sys(os-name)
 api-soap -> CountryISOCode -> <sCountryName>$var(Country1)</sCountryName>
-check-property -> value = ES -> ELEMENT [name = CountryISOCodeResult]
+check-property -> value = ESPANOOOOO -> ELEMENT [name = CountryISOCodeResult]
 property-get -> value => Country_ISO_Code1 -> ELEMENT [name = CountryISOCodeResult]
 api-soap -> CapitalCity -> <sCountryISOCode>$var(Country_ISO_Code1)</sCountryISOCode>
 property-get -> value => Capital1 -> ELEMENT [name = CapitalCityResult]
