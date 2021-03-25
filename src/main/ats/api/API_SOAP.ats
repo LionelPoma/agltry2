@@ -8,7 +8,7 @@ groups -> default
 
 var -> Country1 -> Spain
 var -> Country_ISO_Code2 -> JP
-var -> Country_ISO_Code3 -> GB
+var -> Country_ISO_Code3 -> yolo
 
 [ats-actions]
 
