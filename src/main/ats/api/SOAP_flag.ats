@@ -12,7 +12,7 @@ var -> Country_ISO_Code3 -> GB
 
 [ats-actions]
 
-channel-start -> soapAdd -> http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso?WSDL
+channel-start -> soapAdd -> $env(url_test)
 comment -> summary -> app-name = $sys(app-name)<br>app-version = $sys(app-version)<br>manchine-name = $sys(machine-name)<br>user-name = $sys(user-name)<br>os-name = $sys(os-name)
 api-soap -> CountryISOCode -> <sCountryName>$var(Country1)</sCountryName>
 check-property -> value = ES -> ELEMENT [name = CountryISOCodeResult]
